@@ -1,9 +1,10 @@
 import { REST, Routes, SlashCommandBuilder } from "discord.js";
+import { Commands } from "./commands";
 
 export class RegisterCommands {
   commands = [
     new SlashCommandBuilder()
-      .setName("piranha-pedro")
+      .setName(Commands.PIRANHA_PEDRO)
       .setDescription("Start a new Piranha Pedro game")
       .toJSON(),
   ];

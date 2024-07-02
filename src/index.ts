@@ -1,5 +1,7 @@
 import { Client } from "discord.js";
 import { RegisterCommands } from "./registerCommands";
+import { Commands } from "./commands";
+import { Game } from "./game/game";
 
 declare module "bun" {
   interface Env {
@@ -20,8 +22,9 @@ client.once("ready", c => {
 
 client.on("interactionCreate", interaction => {
   if (!interaction.isChatInputCommand()) return;
-  if (interaction.commandName === "piranha-pedro") {
-    interaction.reply("WHAZZZUPPPP");
+  if (interaction.commandName === Commands.PIRANHA_PEDRO) {
+    let game = new Game();
+    interaction.reply(game.board.toString());
   }
 });
 
