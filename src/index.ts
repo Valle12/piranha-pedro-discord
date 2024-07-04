@@ -9,6 +9,7 @@ declare module "bun" {
     GUILD_ID: string;
     CLIENT_ID: string;
     PEDRO_ID: string;
+    PIRANHA_ID: string;
   }
 }
 

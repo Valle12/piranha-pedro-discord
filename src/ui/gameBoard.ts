@@ -20,6 +20,17 @@ export class GameBoard {
       .setLabel(activePlayer ? "🃏 0 / 2" : "🃏 0 / 1")
       .setStyle(ButtonStyle.Primary)
       .setDisabled(true);
+    const stones = new ButtonBuilder()
+      .setCustomId("stones")
+      .setLabel("🪨 4")
+      .setStyle(ButtonStyle.Primary)
+      .setDisabled(true);
+    const piranhas = new ButtonBuilder()
+      .setCustomId("piranhas")
+      .setLabel("0")
+      .setEmoji({ name: "piranha", id: process.env.PIRANHA_ID })
+      .setStyle(ButtonStyle.Primary)
+      .setDisabled(true);
     const north1 = new ButtonBuilder()
       .setCustomId("north1")
       .setLabel("⬆️ 1")
@@ -72,6 +83,8 @@ export class GameBoard {
     this.buttonBuilders.push(
       pedroLabel,
       cardsSelected,
+      stones,
+      piranhas,
       north1,
       north2,
       north3,
@@ -90,27 +103,29 @@ export class GameBoard {
   initActionRows(): ActionRowBuilder<ButtonBuilder>[] {
     const pedroLabelRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
       this.buttonBuilders[0],
-      this.buttonBuilders[1]
+      this.buttonBuilders[1],
+      this.buttonBuilders[2],
+      this.buttonBuilders[3]
     );
     const northRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      this.buttonBuilders[2],
-      this.buttonBuilders[3],
-      this.buttonBuilders[4]
+      this.buttonBuilders[4],
+      this.buttonBuilders[5],
+      this.buttonBuilders[6]
     );
     const eastRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      this.buttonBuilders[5],
-      this.buttonBuilders[6],
-      this.buttonBuilders[7]
+      this.buttonBuilders[7],
+      this.buttonBuilders[8],
+      this.buttonBuilders[9]
     );
     const southRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      this.buttonBuilders[8],
-      this.buttonBuilders[9],
-      this.buttonBuilders[10]
+      this.buttonBuilders[10],
+      this.buttonBuilders[11],
+      this.buttonBuilders[12]
     );
     const westRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      this.buttonBuilders[11],
-      this.buttonBuilders[12],
-      this.buttonBuilders[13]
+      this.buttonBuilders[13],
+      this.buttonBuilders[14],
+      this.buttonBuilders[15]
     );
 
     return [pedroLabelRow, northRow, eastRow, southRow, westRow];
