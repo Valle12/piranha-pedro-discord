@@ -1,6 +1,8 @@
 import { Client } from "discord.js";
 import { Commands } from "./commands";
+import { Direction } from "./game/direction";
 import { Game } from "./game/game";
+import { Turn } from "./game/turn";
 import { RegisterCommands } from "./registerCommands";
 
 declare module "bun" {
@@ -36,12 +38,50 @@ client.on("interactionCreate", interaction => {
       });
     }
   } else if (interaction.isButton()) {
-    const components = game.disableButton(
+    let turn!: Turn;
+    switch (interaction.customId) {
+      case "north1":
+        turn = new Turn(Direction.NORTH, 1);
+        break;
+      case "north2":
+        turn = new Turn(Direction.NORTH, 2);
+        break;
+      case "north3":
+        turn = new Turn(Direction.NORTH, 3);
+        break;
+      case "east1":
+        turn = new Turn(Direction.EAST, 1);
+        break;
+      case "east2":
+        turn = new Turn(Direction.EAST, 2);
+        break;
+      case "east3":
+        turn = new Turn(Direction.EAST, 3);
+        break;
+      case "south1":
+        turn = new Turn(Direction.SOUTH, 1);
+        break;
+      case "south2":
+        turn = new Turn(Direction.SOUTH, 2);
+        break;
+      case "south3":
+        turn = new Turn(Direction.SOUTH, 3);
+        break;
+      case "west1":
+        turn = new Turn(Direction.WEST, 1);
+        break;
+      case "west2":
+        turn = new Turn(Direction.WEST, 2);
+        break;
+      case "west3":
+        turn = new Turn(Direction.WEST, 3);
+        break;
+    }
+    const components = game.addTurn(
+      turn,
       interaction.message.components,
       interaction.customId
     );
-
-    // TODO handle click on each button
 
     interaction.update({
       components,
