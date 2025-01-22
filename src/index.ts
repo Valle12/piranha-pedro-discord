@@ -19,13 +19,13 @@ const client = new Client({
   intents: ["Guilds", "GuildMessages", "GuildMembers", "MessageContent"],
 });
 
-client.once("ready", c => {
+client.once("ready", (c) => {
   console.log(`✅ ${c.user.tag} is online`);
   new RegisterCommands();
 });
 
 let game: Game;
-client.on("interactionCreate", interaction => {
+client.on("interactionCreate", (interaction) => {
   if (interaction.isChatInputCommand()) {
     if (interaction.commandName === Commands.PIRANHA_PEDRO) {
       game = new Game();
@@ -34,7 +34,7 @@ client.on("interactionCreate", interaction => {
       interaction.reply({
         content: game.board.toString(),
         components,
-        ephemeral: true,
+        flags: "Ephemeral",
       });
     }
   } else if (interaction.isButton()) {
